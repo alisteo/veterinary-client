@@ -10,6 +10,12 @@ import { LoginPage } from '@/auth/pages';
 import { PrivateRoutes } from '../PrivateRoutes';
 
 const AppRouter = createBrowserRouter([
+  ///* Free Routes
+  {
+    path: '/',
+    element: <HomePage />,
+  },
+
   ////* Auth
   {
     path: '/auth',
@@ -23,7 +29,7 @@ const AppRouter = createBrowserRouter([
 
   ////* Private Routes
   {
-    path: '/',
+    path: '/s',
     element: (
       <PrivateRoutes>
         <AppLayout />
@@ -31,7 +37,7 @@ const AppRouter = createBrowserRouter([
     ),
     children: [
       ///* Home
-      { path: '/', element: <HomePage /> },
+      { path: 'sd', element: <HomePage /> },
       {
         path: 'consultas',
         element: <>Some page</>,

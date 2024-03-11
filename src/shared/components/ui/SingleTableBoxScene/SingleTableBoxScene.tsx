@@ -1,5 +1,6 @@
 import {
   Box,
+  Breadcrumbs,
   Button,
   Container,
   Stack,
@@ -7,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { FaPlus } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export type SingleTableBoxSceneProps = {
   title: string;
@@ -28,6 +29,10 @@ const SingleTableBoxScene: React.FC<SingleTableBoxSceneProps> = ({
   onClickCreateBtn,
 }) => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.info('You clicked a breadcrumb.');
+  };
 
   return (
     <Box
@@ -69,6 +74,17 @@ const SingleTableBoxScene: React.FC<SingleTableBoxSceneProps> = ({
                 </Button>
               </div>
             )}
+
+            <div role="presentation" onClick={handleClick}>
+              <Breadcrumbs aria-label="breadcrumb" separator="›">
+                <Link color="inherit" to="/">
+                  Home
+                </Link>
+                <Link color="inherit" to="/">
+                  Consulta Microchips
+                </Link>
+              </Breadcrumbs>
+            </div>
           </Stack>
 
           {/* ========= Search & Table ========= */}
