@@ -6,6 +6,7 @@ import { AuthLayout } from '@/auth/layout';
 
 import { HomePage } from '@/app/home/pages/HomePage';
 import { AppLayout } from '@/app/layouts';
+import { CreatePetPage, PestPage } from '@/app/pets/pages';
 import { LoginPage } from '@/auth/pages';
 import { PrivateRoutes } from '../PrivateRoutes';
 
@@ -29,18 +30,21 @@ const AppRouter = createBrowserRouter([
 
   ////* Private Routes
   {
-    path: '/s',
+    path: '/',
     element: (
       <PrivateRoutes>
         <AppLayout />
       </PrivateRoutes>
     ),
     children: [
-      ///* Home
-      { path: 'sd', element: <HomePage /> },
+      ////* Pets
       {
-        path: 'consultas',
-        element: <>Some page</>,
+        path: 'mascotas',
+        element: <PestPage />,
+      },
+      {
+        path: 'mascotas/registrar',
+        element: <CreatePetPage />,
       },
 
       { path: '*', element: <Navigate to="/" /> },
