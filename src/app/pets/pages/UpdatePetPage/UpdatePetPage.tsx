@@ -11,12 +11,9 @@ const UpdatePetPage: React.FC<UpdatePetPageProps> = () => {
   const { data, isLoading } = useGetPet(+id!);
 
   if (isLoading) return null;
-  if (!data?.data?.id_pet) return <Navigate to={returnUrlPestPage} />;
+  if (!data?.id) return <Navigate to={returnUrlPestPage} />;
 
-  return <SavePet
-    title="Editar Pet"
-    pet={data.data}
-  />;
+  return <SavePet title="Editar Pet" pet={data} />;
 };
 
 export default UpdatePetPage;
