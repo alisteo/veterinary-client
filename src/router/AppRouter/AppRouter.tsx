@@ -6,7 +6,7 @@ import { AuthLayout } from '@/auth/layout';
 
 import { HomePage } from '@/app/home/pages/HomePage';
 import { AppLayout } from '@/app/layouts';
-import { CreatePetPage, PestPage } from '@/app/pets/pages';
+import { CreatePetPage, PestPage, UpdatePetPage } from '@/app/pets/pages';
 import { LoginPage } from '@/auth/pages';
 import { PrivateRoutes } from '../PrivateRoutes';
 
@@ -45,6 +45,10 @@ const AppRouter = createBrowserRouter([
       {
         path: 'mascotas/registrar',
         element: <CreatePetPage />,
+      },
+      {
+        path: 'mascotas/editar/:id',
+        element: <UpdatePetPage />,
       },
 
       { path: '*', element: <Navigate to="/" /> },
