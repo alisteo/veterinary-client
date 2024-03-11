@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import { Pet, MutationParams } from '@/shared/interfaces';
-import { getUrlParams } from '@/shared/utils';
 import { appAPI } from '@/shared/axios';
+import { MutationParams, Pet, PetsResponse } from '@/shared/interfaces';
+import { getUrlParams } from '@/shared/utils';
 
 const { get, post, put, remove } = appAPI();
 
@@ -107,21 +107,21 @@ export type UpdatePetParams = {
 
 export const getPets = (params?: GetPetsParams) => {
   const queryParams = getUrlParams(params || {});
-  return get<MutationParams[]>(`/pet/?${queryParams}`, true);
+  return get<PetsResponse>(`/pets/?${queryParams}`, true);
 };
 
 export const getPet = (id: number) => {
-  return get<Pet>(`/pet/${id}`, true);
+  return get<Pet>(`/pets/${id}`, true);
 };
 
 export const createPet = (data: CreatePetParams) => {
-  return post<Pet>('/pet/', data, true);
+  return post<Pet>('/pets/', data, true);
 };
 
 export const updatePet = ({ id, data }: UpdatePetParams) => {
-  return put<Pet>(`/pet/${id}/`, data, true);
+  return put<Pet>(`/pets/${id}/`, data, true);
 };
 
 export const deletePet = (id: number) => {
-  return remove<Pet>(`/pet/${id}/`, true);
+  return remove<Pet>(`/pets/${id}/`, true);
 };

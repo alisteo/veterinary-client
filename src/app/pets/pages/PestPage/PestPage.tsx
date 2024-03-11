@@ -9,12 +9,11 @@ import {
 } from '@/shared/components';
 import { useTableFilter } from '@/shared/hooks/useTableFilter';
 import { Pet } from '@/shared/interfaces';
+import { emptyCellOneLevel } from '@/shared/utils';
 import { useDeletePet, useFetchPets } from '@/store/app/pets';
 import { useUiConfirmModalStore } from '@/store/ui';
-import { emptyCellOneLevel } from '@/shared/utils';
 
-// TODO: change this to the correct url
-export const returnUrlPestPage = '/app/pets';
+export const returnUrlPestPage = '/mascotas';
 
 export type PestPageProps = {};
 
@@ -174,10 +173,7 @@ const PestPage: React.FC<PestPageProps> = () => {
   );
 
   return (
-    <SingleTableBoxScene
-      title="Pet"
-      createPageUrl={`${returnUrlPestPage}/crear`}
-    >
+    <SingleTableBoxScene title="Pet" showCreateBtn={false}>
       <CustomSearch
         onChange={onChangeFilter}
         value={globalFilter}
@@ -186,7 +182,7 @@ const PestPage: React.FC<PestPageProps> = () => {
 
       <CustomTable<Pet>
         columns={columns}
-        data={PestPagingRes || []}
+        data={PestPagingRes?.pets || []}
         isLoading={isLoading}
         isRefetching={isRefetching}
         // // search
@@ -194,7 +190,7 @@ const PestPage: React.FC<PestPageProps> = () => {
         // // pagination
         pagination={pagination}
         onPaging={setPagination}
-        rowCount={PestPagingRes?.length || 0}
+        rowCount={PestPagingRes?.pets.length || 0}
         // // actions
         actionsColumnSize={180}
         // crud
